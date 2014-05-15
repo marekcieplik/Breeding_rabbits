@@ -32,9 +32,9 @@ bool Kroliki_test_FarmaInitThreeDifferent()
     Farm_stat statFarm2(farm2);
     Farm farm3;
     Farm_stat statFarm3(farm3);
-    statFarm1.showStat(farm1);
-    statFarm2.showStat(farm2);
-    statFarm3.showStat(farm3);
+    statFarm1.showBeginStat(farm1);
+    statFarm2.showBeginStat(farm2);
+    statFarm3.showBeginStat(farm3);
     std::cout << std::endl;
 
     if ( farm1.getBfemales() != farm2.getBfemales()||

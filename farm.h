@@ -10,10 +10,12 @@ class Farm
         void subBfemales();
         void subBmutant();
 
+        void addAgesOfFarm();
         void addBmales();
         void addBfemales();
         void addBmutant();
 
+        int getAgesOfFarm();
         int getBmales();
         int getBfemales();
         int getBmutant();
@@ -23,6 +25,7 @@ class Farm
         virtual ~Farm();
     protected:
     private:
+        int agesOfFarm;
         std::list<Bunny> population;
         int males, females , mutant;
 

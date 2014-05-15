@@ -4,9 +4,13 @@
 #include <iostream>
 void Farm_stat::showStat(Farm & far)
 {
-    std::cout <<std::endl << (int)&far <<std::endl;
-    std::cout << "males\tfemales\tmutant"<<std::endl;
-    std::cout << far.getBmales()<<"\t"<< far.getBfemales()<<"\t"<< far.getBmutant()<<"\r";
+        std::cout <<std::endl << ""<< far.getAgesOfFarm()<<")\t" << far.getBmales()<<" M\t"<< far.getBfemales()<<" F\t"<< far.getBmutant()<<" X\r";
+}
+void Farm_stat::showBeginStat(Farm & far)
+{
+    std::cout <<std::endl << "Address: "<<(int)&far <<std::endl<< "Until:   "<< far.getAgesOfFarm()<<" year(s).\nStatus:\n";
+    std::cout << "\tmales\tfemales\tmutant"<<std::endl;
+    std::cout <<"\t" << far.getBmales()<<"\t"<< far.getBfemales()<<"\t"<< far.getBmutant()<<"\r";
 }
 Bunny Farm_stat::newBunny()
 {

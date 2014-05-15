@@ -8,6 +8,7 @@ class Farm_stat
 {
     public:
         void showStat(Farm &);
+        void showBeginStat(Farm &);
         Bunny newBunny();
         void init(Farm &);
         void aging(); //starzenie sie krolikow
