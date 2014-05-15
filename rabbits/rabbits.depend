@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1400146577 source:c:\users\kuznia\documents\github\breeding_rabbits\bunny.cpp
+	"bunny.h"
+
+1400146410 c:\users\kuznia\documents\github\breeding_rabbits\bunny.h
+
+1400149883 source:c:\users\kuznia\documents\github\breeding_rabbits\farm.cpp
+	"farm.h"
+	<cstdlib>
+
+1400148464 c:\users\kuznia\documents\github\breeding_rabbits\farm.h
+	<list>
+	"bunny.h"
+
+1400158486 source:c:\users\kuznia\documents\github\breeding_rabbits\farm_stat.cpp
+	"farm_stat.h"
+	<cstdlib>
+	<iostream>
+
+1400156585 c:\users\kuznia\documents\github\breeding_rabbits\farm_stat.h
+	"bunny.h"
+	"farm.h"
+
+1400156662 source:c:\users\kuznia\documents\github\breeding_rabbits\main.cpp
+	<iostream>
+	<cstdlib>
+	<time.h>
+	"farm_stat.h"
+	"farm.h"
+
