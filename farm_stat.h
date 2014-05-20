@@ -1,7 +1,7 @@
 #ifndef FARM_STAT_H
 #define FARM_STAT_H
 
-#include "bunny.h"
+
 #include "farm.h"
 
 class Farm_stat
@@ -9,11 +9,7 @@ class Farm_stat
     public:
         void showStat(Farm &);
         void showBeginStat(Farm &);
-        Bunny newBunny();
-        void init(Farm &);
-        void aging(); //starzenie sie krolikow
-        void dying(); //umieranie krolikow
-
+        void showAgesOfBunnys(Farm &);
         Farm_stat(Farm&);
         Farm_stat();
 

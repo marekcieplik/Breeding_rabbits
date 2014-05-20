@@ -6,6 +6,9 @@
 class Farm
 {
     public:
+        Bunny newBunny();
+        void init(int initialPopulation);
+
         void subBmales();
         void subBfemales();
         void subBmutant();
@@ -16,13 +19,18 @@ class Farm
         void addBmutant();
 
         int getAgesOfFarm();
+
         int getBmales();
         int getBfemales();
         int getBmutant();
 
         void addBunny( Bunny bun);
+        void agingFar();
+        void dyingFar();
+        void showBunnyAges();
         Farm();
         virtual ~Farm();
+
     protected:
     private:
         int agesOfFarm;
