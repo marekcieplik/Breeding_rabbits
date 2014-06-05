@@ -20,6 +20,7 @@ Farm::~Farm(){
 std::string Farm::init( int initialPopulation, bool showSpecyfication){
     std::string specificationF = "";
     for (int i = 0; i < initialPopulation; i++){
+
         Bunny bun;
         addBunny( bun );
         if (true == population.back().isRad()){
@@ -30,6 +31,7 @@ std::string Farm::init( int initialPopulation, bool showSpecyfication){
     }
     if (showSpecyfication) std::cout << std::endl << specificationF;
     return specificationF;
+
 }
 
 bool Farm::addBunny(Bunny  bun){

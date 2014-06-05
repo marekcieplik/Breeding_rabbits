@@ -23,7 +23,7 @@ int main()
         farm1.checkBunnysAge();
         stat.showStat(farm1);
         //stat.showAgesOfBunnys(farm1);
-    }
+}
 
     return 0;
 }

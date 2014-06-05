@@ -13,11 +13,19 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+<<<<<<< HEAD
 					<Add directory="D:/tools/gmock-1.7.0/include" />
 					<Add directory="D:/tools/gmock-1.7.0/gtest/include" />
 				</Compiler>
 				<Linker>
 					<Add library="C:\Users\kuznia\Documents\GitHub\Breeding_rabbits\libgmock_test.a" />
+=======
+					<Add directory="D:/kuzniacpp/gmock-1.7.0/include" />
+					<Add directory="D:/kuzniacpp/gmock-1.7.0/gtest/include" />
+				</Compiler>
+				<Linker>
+					<Add library="D:\kuzniacpp\Code_Blocks_Files\kp\gmock_test\bin\Debug\libgmock_test.a" />
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
 				</Linker>
 			</Target>
 			<Target title="Release">

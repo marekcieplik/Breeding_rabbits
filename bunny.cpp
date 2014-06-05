@@ -9,13 +9,15 @@ Bunny::Bunny(){
 		Sex = 'M';
 
     if (chance < 2){
-      setRad(true);
-    }else setRad(false);
+      	setRad(true);
+    }else 
+		setRad(false);
     Age = 0;
 }
 
 Bunny::Bunny(char _sex, int _age, bool _rad)
-: Sex(_sex), Age(_age), Radioactive(_rad){}
+
+: Sex(_sex), Age(_age), Radioactive_mutant_vampire_bunny(_rad){}
 
 Bunny::~Bunny(){
     //dtor
@@ -53,20 +55,22 @@ bool Bunny::hasMaxAge(){
 
 bool Bunny::reproductive(){
     bool isReproductive = false;
-    if (false == Radioactive){
-        if( (reproductiveAge<= Age) && (maxAgeNormal >= Age) )
+
+    if (false == Radioactive_mutant_vampire_bunny){
+        if((reproductiveAge<= Age)&&(maxAgeNormal > Age) )
             isReproductive = true;
-    }
+        }
     return isReproductive;
 }
 
 char Bunny::getSex(){ return Sex;}
 int  Bunny::getAge(){ return Age;}
-bool Bunny::isRad() { return Radioactive;}
 
-void Bunny::setSex(char _sex) {    Sex = _sex;}
-void Bunny::setAge(int  ages) {    Age = ages;}
-void Bunny::setRad(bool isIll){    Radioactive = isIll;}
+bool Bunny::isRad(){ return Radioactive_mutant_vampire_bunny;}
+
+void Bunny::setSex(char _sex){    Sex = _sex;}
+void Bunny::setAge(int  ages){    Age = ages;}
+void Bunny::setRad(bool isIll){   Radioactive_mutant_vampire_bunny = isIll;}
 
 
 

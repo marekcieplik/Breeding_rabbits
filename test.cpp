@@ -17,25 +17,38 @@ protected:
     Bunny b2;
     Bunny b3;
 };
+<<<<<<< HEAD
 //constructor Bunny();
+=======
+
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
 TEST_F(TestBunny, BunnyDefaultConstructor){
        ASSERT_THAT(b1.getSex(), AnyOf('M','F'));
        ASSERT_THAT(b1.getAge(), Eq(0));
        ASSERT_THAT(b1.isRad(),AnyOf(true, false));
 }
+<<<<<<< HEAD
 //addOneYear();
+=======
+
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
 TEST_F(TestBunny,AgingOneTwoYears){
     b1.addOneYear();
     ASSERT_THAT(b1.getAge(),Eq(1));
     b1.addOneYear();
     ASSERT_THAT(b1.getAge(),Eq(2));
 }
+<<<<<<< HEAD
 //hasMaxAge();
+=======
+
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
 TEST_F(TestBunny,BunnyDying){
     for (int i = 0; i < Bunny::maxAgeNormal; i++)
         b1.addOneYear();
     ASSERT_THAT(b1.hasMaxAge(),Eq(true));
 }
+<<<<<<< HEAD
 //reproductive();
 TEST_F(TestBunny,BunnyIsReproductive){
 	b3.addOneYear();
@@ -46,6 +59,9 @@ TEST_F(TestBunny,BunnyIsReproductive){
         b3.addOneYear();
     ASSERT_THAT(b3.reproductive(),Eq(true));
 }
+=======
+
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
 ////////////////////////////////////////////////////////////////////////
 class TestFarm : public Test{
 public:
@@ -61,7 +77,11 @@ protected:
     Farm f1,f2,f0;
     Bunny b1, bunnyMaleWell, bunnyFemaleWell,bunnyMaleX, bunnyFemaleX,bunnyU0F;
 };
+<<<<<<< HEAD
 //constructor Bunny();
+=======
+
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
 TEST_F(TestFarm, RandomingNewBunny){
     ASSERT_THAT(b1.getSex(), AnyOf('M','F'));
     ASSERT_THAT(b1.getAge(), AnyOf(Ge(0), Lt(10)));
@@ -192,7 +212,11 @@ TEST_F(TestFarm, HasTwoBunnys){
 
 TEST_F(TestFarm, InitOneBunnyMore){
     ASSERT_THAT(f2.getFarmQuantity(), Eq(2));
+<<<<<<< HEAD
     ASSERT_THAT(f2.init(1), AnyOf(StrEq("M"), StrEq("F"), StrEq("X") ));
+=======
+    ASSERT_THAT(f2.init(1), AnyOf(StrEq("M"), StrEq("F") ));
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
     ASSERT_THAT(f2.getFarmQuantity(), Eq(3));
     }
 

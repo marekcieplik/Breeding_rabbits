@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+<<<<<<< HEAD
 	<File name="..\main_test.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="61" topLine="0" />
@@ -13,6 +14,10 @@
 	</File>
 	<File name="..\bunny.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+=======
+	<File name="..\bunny.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
 			<Cursor1 position="1254" topLine="33" />
 		</Cursor>
 		<Folding>
@@ -20,12 +25,16 @@
 			<Collapse line="16" />
 		</Folding>
 	</File>
+<<<<<<< HEAD
 	<File name="..\bunny.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="70" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="..\farm.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+	<File name="..\farm.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
 		<Cursor>
 			<Cursor1 position="484" topLine="7" />
 		</Cursor>
@@ -43,6 +52,24 @@
 	<File name="..\farm_stat.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="177" topLine="0" />
+<<<<<<< HEAD
+=======
+		</Cursor>
+	</File>
+	<File name="..\main_test.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\test.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1910" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="..\bunny.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="182" topLine="6" />
+>>>>>>> 943c39ece0fff9984b9c322d12c142949bcabea0
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -3,7 +3,9 @@
 #include <cstdlib>
 #include <iostream>
 void Farm_stat::showStat(Farm & far){
+
         std::cout <<std::endl << "Year: " << far.getFAges()<<")\t" << far.getBmales()<<" M\t"<< far.getBfemales()<<" F\t"<< far.getBfemalesRep()<<" R\t"<< far.getBmutant()<<" X\t";
+
 }
 void Farm_stat::showBeginStat(Farm & far){
     std::cout   <<std::endl

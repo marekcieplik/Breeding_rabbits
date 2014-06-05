@@ -15,6 +15,7 @@ public:
     bool hasMaxAge();  //is true if Ages equal to maxAge. umieranie krolikow
     bool reproductive(); //is true then Ages are greater than or equal to the maxAge
 
+
     int getAge();
     char getSex();//is equal 'M' , 'F'
     bool isRad();//gives true if bunny is radioactive
@@ -26,6 +27,8 @@ protected:
 private:
     char Sex; //: Male, Female (random at creation 50/50)
     int Age;  //: 0-10 (years old)
-    bool Radioactive; //: true/false (decided at time of bunny creation 2% chance of true)
+
+    bool Radioactive_mutant_vampire_bunny; //: true/false (decided at time of bunny creation 2% chance of true)
+
 };
 #endif // BUNNY_H
