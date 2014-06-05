@@ -1,44 +1,74 @@
 #include "bunny.h"
+#include <cstdlib>
 //public
-char Bunny::getSex(){ return Sex;}
-int  Bunny::getAge(){ return age;}
-bool Bunny::isRad(){ return radioactive_mutant_vampire_bunny;}
+Bunny::Bunny(){
+    int chance = rand()%100;
+    if (chance % 2 == 0){
+		Sex = 'F';
+    }else 
+		Sex = 'M';
 
-void Bunny::setSex(char _sex){    Sex = _sex;}
-void Bunny::setAge(int  ages){    age = ages;}
-void Bunny::setRad(bool isIll){   radioactive_mutant_vampire_bunny = isIll;}
+    if (chance < 2){
+      setRad(true);
+    }else setRad(false);
+    Age = 0;
+}
 
-void Bunny::addAge(){
-    age++;
-}
-Bunny::Bunny(char _Sex, int _age, bool _ill)
-{
-    //ctor
-    setSex(_Sex);
-    setAge(_age);
-    setRad(_ill);
-}
-Bunny::~Bunny()
-{
+Bunny::Bunny(char _sex, int _age, bool _rad)
+: Sex(_sex), Age(_age), Radioactive(_rad){}
+
+Bunny::~Bunny(){
     //dtor
 }
 
-//protected
-void  Bunny::agingBun() {
-        age++;
+bool Bunny::addOneYear() {
+    if (false == isRad()){
+        if (maxAgeNormal > Age) {
+            Age++;
+            return true;
+        }else
+            return false;
+    }else{
+        if (maxAgeMutant > Age) {
+            Age++;
+            return true;
+        }else
+            return false;
+    }
 }
 
-bool Bunny::dyingBun(){
+bool Bunny::hasMaxAge(){
     bool isDied = false;
     if( isRad()){
         if (maxAgeMutant == getAge()){
             isDied = true;
          }
-    }
-    else{
+    }else{
         if (maxAgeNormal == getAge()){
             isDied = true;
         }
     }
     return isDied;
 }
+
+bool Bunny::reproductive(){
+    bool isReproductive = false;
+    if (false == Radioactive){
+        if( (reproductiveAge<= Age) && (maxAgeNormal >= Age) )
+            isReproductive = true;
+    }
+    return isReproductive;
+}
+
+char Bunny::getSex(){ return Sex;}
+int  Bunny::getAge(){ return Age;}
+bool Bunny::isRad() { return Radioactive;}
+
+void Bunny::setSex(char _sex) {    Sex = _sex;}
+void Bunny::setAge(int  ages) {    Age = ages;}
+void Bunny::setRad(bool isIll){    Radioactive = isIll;}
+
+
+
+
+

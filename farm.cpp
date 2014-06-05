@@ -1,112 +1,218 @@
 #include "farm.h"
 #include <iostream>
 #include <cstdlib>
-void Farm::agingFar(){
-    for (unsigned int i = 0; i < population.size(); i++)
-    {
-        population.front().agingBun();
+#include <windows.h>
+#include <time.h>
+//public
+Farm::Farm(int initialPopulation, bool showSpecyfication){
+    agesOfFarm =0;
+    males=0;
+    females=0;
+    femalesRep=0;
+    mutants=0;
+    init(initialPopulation,showSpecyfication);
+}
+
+Farm::~Farm(){
+    //dtor
+}
+
+std::string Farm::init( int initialPopulation, bool showSpecyfication){
+    std::string specificationF = "";
+    for (int i = 0; i < initialPopulation; i++){
+        Bunny bun;
+        addBunny( bun );
+        if (true == population.back().isRad()){
+            specificationF += 'X';
+        }else{
+            specificationF += population.back().getSex();
+        }
+    }
+    if (showSpecyfication) std::cout << std::endl << specificationF;
+    return specificationF;
+}
+
+bool Farm::addBunny(Bunny  bun){
+	if (true == bun.isRad() && ( ('M' == bun.getSex()) || ('F' == bun.getSex()) ) && (0 == bun.getAge()) ){
+		mutants++;
+		population.push_back(bun);
+        return true;
+	}else if (false == bun.isRad() && ( ('M' == bun.getSex()) || ('F' == bun.getSex()) ) && (0 == bun.getAge())){
+		if ('M' == bun.getSex()) males++; else females++;
+		population.push_back(bun);
+        return true;
+	}else return false;
+}
+
+
+void Farm::addOneYear(){
+    agesOfFarm++;
+    for (unsigned int i = 0; i < population.size(); i++)    {
+        population.front().addOneYear();
+        if ('F' == getBunnyFront().getSex() &&
+            Bunny::reproductiveAge == getBunnyFront().getAge())
+                femalesRep++;
         population.push_back(population.front());
         population.pop_front();
     }
-
 }
 
-void Farm::dyingFar(){
+void Farm::checkBunnysAge(){
+	//TODO fixme
     unsigned int populationSize = population.size();
-    for (unsigned int i = 0; i < populationSize; i++)
-    {
-        if( population.front().dyingBun())
-        {
+    for (unsigned int i = 0; i < populationSize; i++)    {
+        if( population.front().hasMaxAge())        {
             if('M' == population.front().getSex())
-                subBmales();
+                males--;
             if('F' == population.front().getSex())
-                subBfemales();
+                females--;
+            if('F' == population.front().getSex() &&
+                Bunny::reproductiveAge == population.front().getAge())
+                subBfemalesRep();
+
             if('X' == population.front().getSex())
-                subBmutant();
+                mutants--;
             population.pop_front();
-
-
         }
-        else
-        {
+        else        {
             population.push_back(population.front());
             population.pop_front();
         }
+    }
+}
 
+Bunny Farm::getBunnyFront(){
+    return population.front();
+}
+
+bool Farm::popBunnyFront(){
+	Bunny bun = population.front();
+	if (true == bun.isRad() && ( ('M' == bun.getSex()) || ('F' == bun.getSex()) ) ){
+		mutants--;
+		population.pop_front();
+        return true;
+	}else if (false == bun.isRad() && ( ('M' == bun.getSex()) || ('F' == bun.getSex()) )){
+		if ('M' == bun.getSex()) males--; else females--;
+		population.pop_front();
+        return true;
+	}else {
+    	std::cout <<"Farm::popBunnyFront(): There is bunny with wrong sex identyfier. ";
+    	return false;
     }
 
 }
+	
+void Farm::moveBunnyToEndOfList(){
+    population.push_back(population.front());
+    population.pop_front();
+}
 
-void Farm::showBunnyAges(){
-    unsigned int populationSize = population.size();
-    for (unsigned int i = 0; i < populationSize; i++)
+bool Farm::subBunny(){	
+	Bunny bun = population.front();
+	if (true == bun.isRad() && ( ('M' == bun.getSex()) || ('F' == bun.getSex()) ) && (Bunny::maxAgeMutant == bun.getAge()) ){
+		mutants--;
+		population.pop_front();
+        return true;
+	}else if (false == bun.isRad() && ( ('M' == bun.getSex()) || ('F' == bun.getSex()) ) && (Bunny::maxAgeNormal == bun.getAge())){
+		if ('M' == bun.getSex()) males--; else females--;
+		population.pop_front();
+        return true;
+	}else {
+    	std::cout <<"Farm::popBunnyFront(): There is bunny with wrong sex identyfier. ";
+    	return false;
+    }
+    
+}
+
+std::string Farm::showBunnyAges(){
+    std::string specificationF = "";
+    char buf[100];
+    for ( int i = 0; i < getFarmQuantity(); i++)    {
+        specificationF += itoa(population.front().getAge(),buf,10);
+        specificationF += population.front().getSex();
+        moveBunnyToEndOfList();
+    }
+    return specificationF;
+}
+
+int Farm::reproductivePair(){
+	int malesRep = 0;
+	int femalesRep = 0;
+	Bunny bun;
+	
+    for (int i = 0 ; i < getFarmQuantity(); i++){
+    	bun = population.front();
+		if (false == bun.isRad() && ( ('M' == bun.getSex()) || ('F' == bun.getSex()) ) && (Bunny::reproductiveAge <= bun.getAge())){
+			if ('M' == bun.getSex()) malesRep++; else femalesRep++;
+		}
+         moveBunnyToEndOfList();
+    }
+    
+	if (0 < malesRep && 0 < femalesRep)
+        return femalesRep;
+    else
+        return 0;
+}
+
+bool Farm::radioactive(){
+///////////////////////// ALGORYTM LOSOWANIA BEZ POWTORZEN //////////////////////
+//srand(time(NULL));
+
+    int ile_pytan = 20; //z ilu pytan losujemy?
+    int ile_wylosowac = 5; //ile pytan wylosowac?
+    int ile_juz_wylosowano=0; //zmienna pomocnicza
+    int *wylosowane = new int[ile_wylosowac+1]; //rezerwacja tablicy
+    bool losowanie_ok;
+
+    for (int i=1; i<=ile_wylosowac; i++)
     {
-        //TODO
-        std::cout<<population.front().getAge()<< population.front().getSex();
-        population.push_back(population.front());
-        population.pop_front();
+		do
+		{
+            int liczba=rand()%ile_pytan+1; //losowanie w C++
+            losowanie_ok=true;
+
+			for (int j=1; j<=ile_juz_wylosowano; j++)
+			{
+				//czy liczba nie zostala juz wczesniej wylosowana?
+				if (liczba==wylosowane[j]) losowanie_ok=false;
+			}
+
+			if (losowanie_ok==true)
+			{
+				//mamy unikatowa liczbe, zapiszmy ja do tablicy
+				ile_juz_wylosowano++;
+				wylosowane[ile_juz_wylosowano]=liczba;
+			}
+		} while(losowanie_ok!=true);
     }
+
+///////////////////////// ZOBACZ REZULTATY LOSOWANIA //////////////////////
+
+	std::cout<<"Wylosowane numery: ";
+    for (int i=1; i<=ile_wylosowac; i++)
+    {
+		std::cout<<wylosowane[i]<<" ";
+	}
+
+	return false;
 }
 
-Bunny Farm::newBunny(){
-    const int age = 0;
-    const char sex = 'M';
-    const bool rad = false;
-
-    Bunny oBunny(sex, age, rad);
-
-    int chance = rand()%100;
-    if (chance % 2 == 0){
-          oBunny.setSex('F');
-    }else oBunny.setSex('M');
-
-    if (chance < 2){
-          oBunny.setRad(true);
-    }else oBunny.setRad(false);
-
-    return oBunny;
-}
-
-void Farm::init( int initialPopulation){
-    for (int i = 0; i < initialPopulation; i++)
-        addBunny(newBunny());
-}
-
-void Farm::subBmales(){ males--;}
-void Farm::subBfemales(){ females--;}
-void Farm::subBmutant(){ mutant--;}
+void Farm::subBfemalesRep(){ femalesRep--;}
 
 void Farm::addAgesOfFarm(){ agesOfFarm++;};
-void Farm::addBmales(){ males++;}
-void Farm::addBfemales(){ females++;}
-void Farm::addBmutant(){ mutant++;}
 
-int Farm::getAgesOfFarm() {   return agesOfFarm; }
+void Farm::addBfemalesRep(){ femalesRep++;}
+
+
+int Farm::getFAges() {   return agesOfFarm; }
+int Farm::getFarmQuantity(){
+    int sizeFarm = (getBmales()+getBfemales()+getBmutant());
+    if (int (population.size()) == sizeFarm)
+        return sizeFarm;
+    else
+        return -1;
+    }
 int Farm::getBmales(){    return males;}
 int Farm::getBfemales(){    return females;}
-int Farm::getBmutant(){ return mutant;}
-
-void Farm::addBunny(Bunny bun){
-    if (false == bun.isRad())
-    {
-        if ('M' == bun.getSex()) addBmales();
-        if ('F' == bun.getSex()) addBfemales();
-    }
-    else addBmutant();
-
-    population.push_back(bun);
-}
-
-Farm::Farm(){
-    agesOfFarm =1;
-    males=0;
-    females=0;
-    mutant=0;
-    const int initialPopulation = 5;
-    init(initialPopulation);
-}
-
-Farm::~Farm()
-{
-    //dtor
-}
+int Farm::getBfemalesRep(){    return femalesRep;}
+int Farm::getBmutant(){ return mutants;}

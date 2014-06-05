@@ -3,21 +3,21 @@
 #include <cstdlib>
 #include <iostream>
 void Farm_stat::showStat(Farm & far){
-        std::cout <<std::endl << "Year: " << far.getAgesOfFarm()<<")\t" << far.getBmales()<<" M\t"<< far.getBfemales()<<" F\t"<< far.getBmutant()<<" X\r";
+        std::cout <<std::endl << "Year: " << far.getFAges()<<")\t" << far.getBmales()<<" M\t"<< far.getBfemales()<<" F\t"<< far.getBfemalesRep()<<" R\t"<< far.getBmutant()<<" X\t";
 }
 void Farm_stat::showBeginStat(Farm & far){
     std::cout   <<std::endl
                 << "Address: "
-                <<(int)&far
+                <<(long long)&far
                 << ". Until: "
-                << far.getAgesOfFarm()
+                << far.getFAges()
                 <<" year(s).\nStatus:"
-                << "\tmales\tfemales\tmutant\tAGES"
+                << "\t\tmales\tfemales\tRep\tmutant\tAGES"
                 <<std::endl;
-    std::cout  <<"\t" << far.getBmales()<<"\t"<< far.getBfemales()<<"\t"<< far.getBmutant()<<"\t";
+    std::cout  <<"\t\t" << far.getBmales()<<"\t"<< far.getBfemales()<<"\t"<< far.getBfemalesRep()<<"\t"<< far.getBmutant()<<"\t" << far.getFAges();
 }
 void Farm_stat::showAgesOfBunnys(Farm & far){
-    far.showBunnyAges();
+    std::cout<<far.showBunnyAges();
 }
 
 Farm_stat::Farm_stat(Farm & farm1)
