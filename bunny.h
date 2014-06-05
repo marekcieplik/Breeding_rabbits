@@ -4,29 +4,28 @@
 class Bunny{
 public:
     static const int maxAgeNormal = 10;
-    static const int maxAgeMutant = 5;
+    static const int maxAgeMutant = 50;
+    static const int reproductiveAge = 2;
 
-    char getSex();
+    Bunny();
+    Bunny(char _sex, int _age, bool _rad);
+    virtual ~Bunny();
+
+    bool addOneYear(); //added one year to ages of bunny. starzenie sie krolikow
+    bool hasMaxAge(); //is true if Ages equal to maxAge. umieranie krolikow
+    bool reproductive();
+
     int getAge();
-    bool isRad();
-
+    char getSex();//is equal 'M' , 'F'
+    bool isRad();//gives true if bunny is radioactive
     void setSex(char);
     void setAge(int);
     void setRad(bool);
 
-    void addAge();
-
-    Bunny(char a_char = 'M',int a_age = 0, bool a_rad = false);
-    virtual ~Bunny();
-    bool dyingBun(); //umieranie krolikow
-    void agingBun(); //starzenie sie krolikow
 protected:
 private:
     char Sex; //: Male, Female (random at creation 50/50)
-    int age;  //: 0-10 (years old)
-    bool radioactive_mutant_vampire_bunny; //: true/false (decided at time of bunny creation 2% chance of true)
-
-
+    int Age;  //: 0-10 (years old)
+    bool Radioactive_mutant_vampire_bunny; //: true/false (decided at time of bunny creation 2% chance of true)
 };
-
 #endif // BUNNY_H
